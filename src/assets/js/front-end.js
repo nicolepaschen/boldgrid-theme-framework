@@ -6,12 +6,18 @@
  * Only fires on body classes that match. If a body class contains a dash,
  * replace the dash with an underscore when adding it to the object below.
  * ======================================================================== */
+
+// Setup our object.
+var BoldGrid = BoldGrid || {};
+
 ( function( $ ) {
 
 	'use strict';
 
+	var UTIL;
+
 	// Use this variable to set up the common and DOM based specific functionality.
-	var BoldGrid = {
+	BoldGrid = {
 
 		// Scripts to fire on all pages.
 		'common': {
@@ -317,7 +323,7 @@
 	 * The routing fires all common scripts, followed by the DOM specific
 	 * scripts.  Additional events can be added for more control over timing.
 	 */
-	var UTIL = {
+	UTIL = {
 		fire: function( func, funcname, args ) {
 			var fire, namespace = BoldGrid;
 			funcname = ( undefined === funcname ) ? 'init' : funcname;

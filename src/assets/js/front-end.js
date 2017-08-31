@@ -293,7 +293,11 @@ var BoldGrid = BoldGrid || {};
 				});
 			}
 		},
+
+		// Scroll to top button is enabled.
 		'goup_enabled': {
+
+			// Initialize.
 			init: function() {
 				$.goup({
 					location: _goupOptions.location,
@@ -315,6 +319,11 @@ var BoldGrid = BoldGrid || {};
 					titleAsTextClass: _goupOptions.titleAsTextClass,
 					zIndex: _goupOptions.zIndex
 				});
+			},
+
+			// Destroy scroll to top buttons.
+			destroy: function() {
+				$( '.goup-container, .goup-text' ).remove();
 			}
 		}
 	};

@@ -316,7 +316,7 @@ class BoldGrid {
 		}
 		// Add class if sidebar is active.
 		if ( $this->display_sidebar() ) {
-			$classes[] = 'sidebar-1';
+			$classes[] = 'has-sidebar sidebar-1';
 		}
 
 		// Add class if post title is hidden.

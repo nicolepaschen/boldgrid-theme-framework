@@ -49,10 +49,7 @@ main {
 
 $adjust: multiply-use-first-unit( $padding, 2 );
 
-.page-template-left-sidebar,
-.post-template-left-sidebar,
-.page-template-right-sidebar,
-.post-template-right-sidebar {
+.has-sidebar {
 	main {
 		width: calc((100% * (2/3)) + #{$adjust});
 	}
@@ -63,9 +60,10 @@ $adjust: multiply-use-first-unit( $padding, 2 );
 }
 
 /** Left Sidebar **/
-.page-template-left-sidebar,
-.post-template-left-sidebar {
-	.site-content {
-		flex-direction: row-reverse;
+.page, .post {
+	&-template-left-sidebar {
+		.site-content {
+			flex-direction: row-reverse;
+		}
 	}
 }

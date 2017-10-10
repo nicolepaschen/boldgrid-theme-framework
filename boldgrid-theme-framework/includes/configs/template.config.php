@@ -77,6 +77,7 @@ return array(
 		'is_404',
 		'is_search',
 		'is_front_page',
+		'[no-sidebar]is_page_template',
 		'[default]is_page_template',
 		'[page_home.php]is_page_template',
 	),

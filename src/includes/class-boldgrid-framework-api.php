@@ -286,6 +286,19 @@ class BoldGrid {
 		}
 	}
 
+	public function print_menu() {
+		?>
+			<div id="navi">
+			<!-- Mobile toggle -->
+			<input id="main-menu-state" type="checkbox" />
+			<label class="main-menu-btn" for="main-menu-state">
+				<span class="main-menu-btn-icon"></span><span class="sr-only">Toggle main menu visibility</span>
+			</label>
+			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => 'false', 'menu_id' => 'main-menu', 'menu_class' => 'sm bgtfw-menu logo logo-left' ) ); ?>
+			</div>
+		<?php
+	}
+
 	/**
 	 * BoldGrid::skip_link(  );
 	 *

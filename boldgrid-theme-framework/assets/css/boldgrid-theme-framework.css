@@ -899,6 +899,10 @@ main {
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
+/* Base Footer Styles */
+#colophon {
+  padding: 1.5em 0; }
+
 /* Disabled Footer */
 .disabled-footer {
   margin-bottom: 50px; }

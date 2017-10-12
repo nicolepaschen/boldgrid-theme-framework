@@ -1049,6 +1049,9 @@ html.admin-bar {
   margin: 0;
   border: 0; }
 
+.attribution-theme-mods .link:first-child {
+  padding-left: 0; }
+
 @media only screen and (min-width: 768px) {
   .attribution-theme-mods {
     padding-left: 0; } }

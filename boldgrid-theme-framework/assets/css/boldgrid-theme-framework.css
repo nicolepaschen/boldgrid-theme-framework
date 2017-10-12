@@ -1015,6 +1015,18 @@ html.admin-bar {
   content: '|'; }
 
 /* Attribution Links */
+.attribution-theme-mods {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center; }
+
+.attribution-theme-mods .center {
+  justify-content: center; }
+
+.attribution-theme-mods .right {
+  justify-content: flex-end; }
+
 .attribution-theme-mods .link {
   padding: .5em; }
 
@@ -1029,6 +1041,10 @@ html.admin-bar {
 .attribution-theme-mods .link.no-separator:after, .attribution-theme-mods .link:last-child:after {
   margin: 0;
   border: 0; }
+
+@media only screen and (min-width: 768px) {
+  .attribution-theme-mods {
+    padding-left: 0; } }
 
 /*--------------------------------------------------------------
 # GridBlocks

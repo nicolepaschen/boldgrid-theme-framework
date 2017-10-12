@@ -1,4 +1,14 @@
 .attribution-theme-mods {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	.center {
+		justify-content: center;
+	}
+	.right {
+		justify-content: flex-end;
+	}
 	.link {
 		padding: .5em;
 		&:after {
@@ -14,5 +24,8 @@
 				border: 0;
 			}
 		}
+	}
+	@media only screen and (min-width : 768px) {
+		padding-left: 0;
 	}
 }

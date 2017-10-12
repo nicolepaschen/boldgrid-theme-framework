@@ -878,7 +878,10 @@ main {
   .has-sidebar main + aside {
     width: calc((100% * (1/3)) + 1em);
     padding: 0 0.5em; }
-  /** Left Sidebar **/
+  /* Sidebar Template Specific Styles */
+  .page, .post {
+    /** Left Sidebar **/
+    /** Right Sidebar **/ }
   .page-template-left-sidebar .site-content, .post-template-left-sidebar .site-content {
     flex-direction: row-reverse; }
   .page-template-right-sidebar .site-content, .post-template-right-sidebar .site-content {

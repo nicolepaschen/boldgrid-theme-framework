@@ -46,13 +46,18 @@ $adjust: multiply-use-first-unit( $padding, 2 );
 			padding: 0 $padding;
 		}
 	}
-	/** Left Sidebar **/
+
+	/* Sidebar Template Specific Styles */
 	.page, .post {
+
+		/** Left Sidebar **/
 		&-template-left-sidebar {
 			.site-content {
 				flex-direction: row-reverse;
 			}
 		}
+
+		/** Right Sidebar **/
 		&-template-right-sidebar {
 			.site-content {
 				flex-direction: row;

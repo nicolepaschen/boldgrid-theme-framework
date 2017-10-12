@@ -1027,6 +1027,9 @@ html.admin-bar {
 .attribution-theme-mods .right {
   justify-content: flex-end; }
 
+.attribution-theme-mods .left {
+  justify-content: flex-start; }
+
 .attribution-theme-mods .link {
   padding: .5em; }
 

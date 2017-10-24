@@ -73,7 +73,7 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 
 		$div_class = 'post-layout theme-layouts-thumbnail-wrap';
 
-		if( !empty( $post_layout ) ){
+		if ( ! empty( $post_layout ) ) {
 			$div_class .= ' post-layout-selected';
 		}
 		wp_nonce_field( basename( __FILE__ ), 'theme-layouts-nonce' ); ?>
@@ -117,7 +117,7 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 			}
 
 			/* Label class */
-			$label_class = "theme-layout-label";
+			$label_class = 'theme-layout-label';
 			if ( 'default' === $templates[ $template ] ) {
 				$label_class .= ' layout-default'; // hide it!
 			}
@@ -192,7 +192,7 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 				 */
 				$dropdown_args = apply_filters( 'page_attributes_dropdown_pages_args', $dropdown_args, $post );
 				$pages = wp_dropdown_pages( $dropdown_args );
-				if ( ! empty($pages) ) : ?>
+				if ( ! empty( $pages ) ) : ?>
 					<p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="parent_id"><?php _e( 'Parent' ); ?></label></p>
 					<?php echo $pages; ?>
 					<?php
@@ -212,7 +212,7 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 
 	/**
 	 * Styles for page attributes metabox.
-	 * 
+	 *
 	 * @since 2.0.0
 	 */
 	public function styles() {

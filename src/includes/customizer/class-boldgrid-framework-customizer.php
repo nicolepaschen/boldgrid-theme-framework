@@ -236,7 +236,12 @@ HTML;
 				'priority'    => 120,
 			) );
 		}
-
+			// Add an "other" Panel.
+			$wp_customize->add_panel( 'boldgrid_other', array(
+				'title'       => __( 'Layout', 'boldgrid' ),
+				'description' => 'Site Layout Options',
+				'priority'    => 70,
+			) );
 		// Move Static Front page to the Other Section.
 		if ( $wp_customize->get_section( 'static_front_page' ) ) {
 			$wp_customize->get_section( 'static_front_page' )->panel    = 'boldgrid_other';

@@ -79,6 +79,7 @@ class BoldGrid_Framework {
 		$this->define_admin_hooks();
 		$this->define_global_hooks();
 		$this->boldgrid_theme_setup();
+		$this->layouts();
 		$this->setup_menus();
 		$this->boldgrid_widget_areas();
 		$this->theme_customizer();
@@ -160,6 +161,7 @@ class BoldGrid_Framework {
 			'editor',
 			'edit-post-links',
 			'i18n',
+			'layouts-post-meta',
 			'loader',
 			'menu',
 			'ninja-forms',
@@ -196,7 +198,7 @@ class BoldGrid_Framework {
 		 * @since 1.0.0
 		 */
 		require_once trailingslashit( __DIR__ ) . 'partials/wp_bootstrap_navwalker.php';
-
+		
 		/**
 		 * Include the TGM_Plugin_Activation class.
 		 */
@@ -496,7 +498,6 @@ class BoldGrid_Framework {
 		$color_compile = new Boldgrid_Framework_Compile_Colors( $this->configs );
 
 		$this->loader->add_action( 'after_setup_theme', $theme_setup, 'boldgrid_setup' );
-
 		// Add the active button styles from configs to the compiler file array if active.
 		if ( true === $this->configs['components']['buttons']['enabled'] ) {
 			$this->loader->add_filter( 'boldgrid_theme_helper_scss_files', $color_compile, 'get_button_color_files' );
@@ -513,6 +514,19 @@ class BoldGrid_Framework {
 
 		// TODO: Merge these standalone files into classes and our existing structure.
 		$theme_setup->add_additional_setup();
+	}
+
+	private function layouts() {
+		$layouts = new Boldgrid_Framework_Layouts_Post_Meta( $this->configs );
+
+		/* Adds our custom meta box to page/post editor. */
+		$this->loader->add_action( 'add_meta_boxes', $layouts, 'add_meta_box' );
+
+		/* Adds our styles/scripts for the custom meta box on the new post and edit post screens only. */
+		$this->loader->add_action( 'admin_head-post.php', $layouts, 'styles' );
+		$this->loader->add_action( 'admin_head-post-new.php', $layouts, 'styles' );
+		$this->loader->add_action( 'admin_footer-post.php', $layouts, 'scripts' );
+		$this->loader->add_action( 'admin_footer-post-new.php', $layouts, 'scripts' );
 	}
 
 	/**
@@ -532,6 +546,18 @@ class BoldGrid_Framework {
 		self::contact_blocks();
 		self::customizer_kirki();
 		self::customizer_effects();
+		self::layout();
+	}
+
+	/**
+	 * This defines the core functionality of the framework's Layout section.
+	 *
+	 * @since    1.3.5
+	 * @access   private
+	 */
+	private function layout() {
+		$layouts = new Boldgrid_Framework_Customizer_Layout_Page( $this->configs );
+		$this->loader->add_action( 'customize_register', $layouts, 'add_controls' );
 	}
 
 	/**

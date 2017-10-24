@@ -29,12 +29,11 @@
 	flex-direction: column-reverse;
 }
 
+$adjust: multiply-use-first-unit( $padding, 2 );
+
 main {
 	width: 100%;
-	padding: 0 $padding;
 }
-
-$adjust: multiply-use-first-unit( $padding, 2 );
 
 @media only screen and (min-width : 992px) {
 	.has-sidebar {
@@ -43,22 +42,22 @@ $adjust: multiply-use-first-unit( $padding, 2 );
 		}
 		main + aside {
 			width: calc((100% * (1/3)) + #{$adjust});
-			padding: 0 $padding;
+			padding: 0 #{$adjust};
 		}
 	}
 
 	/* Sidebar Template Specific Styles */
-	.page, .post {
+	.has-sidebar {
 
 		/** Left Sidebar **/
-		&-template-left-sidebar {
+		&.left-sidebar {
 			.site-content {
 				flex-direction: row-reverse;
 			}
 		}
 
 		/** Right Sidebar **/
-		&-template-right-sidebar {
+		&.right-sidebar {
 			.site-content {
 				flex-direction: row;
 			}

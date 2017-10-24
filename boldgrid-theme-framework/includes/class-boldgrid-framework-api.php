@@ -381,7 +381,16 @@ class BoldGrid {
 			$classes[] = 'bgtfw-edit-links-hidden';
 		}
 
-		return $classes;
+		$layout = get_page_template_slug();
+
+		if ( empty( $layout ) ) {
+			$type = 'page' === get_post_type() ? 'page' : 'blog';
+			$layout = get_theme_mod( 'bgtfw_layout_' . $type, '' );		
+		}
+
+		$classes[] = sanitize_html_class( $layout );
+
+		return array_unique( $classes );
 	}
 
 	/**

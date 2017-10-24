@@ -262,9 +262,9 @@ class BoldGrid {
 	}
 
 	/**
-	 * Print the sites primary navigation.
+	 * Print the site's primary navigation using the Bootstrap navwalker.
 	 *
-	 * @since   1.0.0
+	 * @since 1.0.0
 	 */
 	public function print_primary_navigation() {
 		if ( has_nav_menu( 'primary' ) ) { ?>
@@ -286,6 +286,11 @@ class BoldGrid {
 		}
 	}
 
+	/**
+	 * Print the site's primary navigation using the native WordPress navwalker.
+	 *
+	 * @since 2.0.0
+	 */
 	public function print_menu() {
 		?>
 			<div id="navi">
@@ -385,7 +390,7 @@ class BoldGrid {
 
 		if ( empty( $layout ) ) {
 			$type = 'page' === get_post_type() ? 'page' : 'blog';
-			$layout = get_theme_mod( 'bgtfw_layout_' . $type, '' );		
+			$layout = get_theme_mod( 'bgtfw_layout_' . $type, '' );
 		}
 
 		$classes[] = sanitize_html_class( $layout );

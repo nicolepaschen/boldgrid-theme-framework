@@ -2,7 +2,7 @@
 /**
  * Class: Boldgrid_Framework_Layouts_Post_Meta
  *
- * @since 3.0.0
+ * @since 2.0.0
  * @package Boldgrid_Framework
  * @subpackage Boldgrid_Framework_Layouts
  * @author BoldGrid <support@boldgrid.com>
@@ -14,7 +14,7 @@
  *
  * Responsible for the layouts post meta box
  *
- * @since 1.0.6
+ * @since 2.0.0
  */
 class Boldgrid_Framework_Layouts_Post_Meta {
 
@@ -22,7 +22,7 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 	 * Global Framework configurations
 	 *
 	 * @var array $configs
-	 * @since 1.0.6
+	 * @since 2.0.0
 	 */
 	protected $configs;
 
@@ -30,16 +30,21 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 	 * Pass in configs
 	 *
 	 * @param array $configs Array of bgtfw configuration options.
-	 * @since 1.0.6
+	 * @since 2.0.0
 	 */
 	public function __construct( $configs ) {
 		$this->configs = $configs;
 	}
 
 	/**
-	 * Adds the meta box to the page screen
+	 * Adds the meta box to the page screen.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param String $post_type The post type being modified.
 	 */
 	public function add_meta_box( $post_type ) {
+
 		// remove the default
 		remove_meta_box( 'pageparentdiv', array( 'page', 'post' ), 'side' );
 
@@ -54,7 +59,11 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 		);
 	}
 
-
+	/**
+	 * Renders the page/post layout radio selection controls in the metabox.
+	 *
+	 * @since 2.0.0
+	 */
 	public function layout_selection( $post_type = 'page' ) {
 		$templates = get_page_templates( null, $post_type );
 		ksort( $templates );
@@ -67,10 +76,8 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 		if( !empty( $post_layout ) ){
 			$div_class .= ' post-layout-selected';
 		}
-		?>
-
-		<?php wp_nonce_field( basename( __FILE__ ), 'theme-layouts-nonce' ); ?>
-			<div id="post-layout" class="<?php echo esc_attr( $div_class ); ?>">
+		wp_nonce_field( basename( __FILE__ ), 'theme-layouts-nonce' ); ?>
+		<div id="post-layout" class="<?php echo esc_attr( $div_class ); ?>">
 			<div id="customize-control-bgtfw_layout_page" class="post-layout-wrap customize-control customize-control-kirki customize-control-kirki-radio">
 			<?php
 				/**
@@ -94,7 +101,7 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 					$title = '<div class="template-name">' . esc_html( $k ) . '</div>';
 					$subtitle = '<div class="template-subtitle">' . esc_html( $default_title ) . '</div>';
 				}
-		?>
+			?>
 			<label class="theme-layout-label layout-default layout-selected">
 				<input type="radio" name="page_template" class="theme-layout-input" value="default" <?php echo $checked; ?> />
 				<?php echo $title; ?>
@@ -104,18 +111,18 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 		foreach ( array_keys( $templates ) as $template ) {
 
 			/* Set empty value for Layout Global/Default */
-			$layout_value = $templates[ $template ];			
-			if ( 'default' == $template ){
+			$layout_value = $templates[ $template ];
+			if ( 'default' === $template ) {
 				$layout_value = '';
 			}
 
 			/* Label class */
 			$label_class = "theme-layout-label";
-			if( 'default' == $templates[ $template ] ){
-				$label_class .= " layout-default"; // hide it!
+			if ( 'default' === $templates[ $template ] ) {
+				$label_class .= ' layout-default'; // hide it!
 			}
-			if ( $post_layout == $templates[ $template ] ){
-				$label_class .= " layout-selected";
+			if ( $post_layout === $templates[ $template ] ) {
+				$label_class .= ' layout-selected';
 			}
 
 			/* Label */
@@ -132,7 +139,9 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 	}
 
 	/**
-	 * Callback function for our meta box.  Echos out the content
+	 * Callback function for our meta box.  Echos out the content.
+	 *
+	 * @since 2.0.0
 	 */
 	public function meta_box_callback( $post ) {
 		if ( count( get_page_templates( $post ) ) > 0 && get_option( 'page_for_posts' ) != $post->ID ) :
@@ -174,7 +183,7 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 				/**
 				 * Filters the arguments used to generate a Pages drop-down element.
 				 *
-				 * @since 3.3.0
+				 * @since 2.0.0
 				 *
 				 * @see wp_dropdown_pages()
 				 *
@@ -204,9 +213,10 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 	/**
 	 * Styles for page attributes metabox.
 	 * 
-	 * @since 3.0.0
+	 * @since 2.0.0
 	 */
-	public function styles() { ?>
+	public function styles() {
+		?>
 		<style id="bgtfw-page-attributes">
 			/*--------------------------------------------------------------
 			# Customizer Sidebar Controls
@@ -220,7 +230,6 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 				-o-transition: opacity 200ms ease-out;
 				transition: opacity 200ms ease-out;
 			}
-			
 			#customize-control-bgtfw_layout_page.customize-control-kirki-radio > label:hover {
 				opacity: 1;
 				-webkit-transition: opacity 300ms ease-in;
@@ -228,7 +237,6 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 				-o-transition: opacity 300ms ease-in;
 				transition: opacity 300ms ease-in;
 			}
-			
 			#customize-control-bgtfw_layout_page.customize-control-kirki-radio > label input[type="radio"] {
 				min-width: 32px;
 				min-height: 32px;
@@ -245,11 +253,9 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 				line-height: 1.1;
 				margin: 4px 12px 4px 0;
 			}
-			
 			#customize-control-bgtfw_layout_page.customize-control-kirki-radio > label input[type="radio"]:hover, #customize-control-bgtfw_layout_page.customize-control-kirki-radio > label input[type="radio"]:focus, #customize-control-bgtfw_layout_page.customize-control-kirki-radio > label input[type="radio"]:checked {
 				background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cpath fill='%23444' d='M2.12 29.96h27.84V2.12H2.12v27.84zM.04 1.26C.04.6.58.04 1.26.04H30.8c.7 0 1.24.54 1.24 1.22V30.8c0 .7-.55 1.24-1.23 1.24H1.28C.6 32.04.04 31.5.04 30.8V1.27z'/%3E%3Cpath fill='%23444' d='M22 1.6h8.4v28.8H22V1.6z'/%3E%3C/svg%3E");
 			}
-			
 			#customize-control-bgtfw_layout_page.customize-control-kirki-radio > label input[type="radio"]:before {
 				background-color: transparent;
 				border-radius: 0;
@@ -258,7 +264,6 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 				content: "";
 				opacity: 1;
 			}
-			
 			#customize-control-bgtfw_layout_page.customize-control-kirki-radio > label input[type="radio"]:checked:after {
 				content: "\f147";
 				display: flex;
@@ -273,27 +278,22 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 				margin-left: -7px;
 				margin-top: 2px;
 			}
-			
 			#customize-control-bgtfw_layout_page.customize-control-kirki-radio > label input[type="radio"][value=left-sidebar] {
 				transform: rotate(180deg);
 				transform-origin: 50% 50%;
 			}
-			
 			#customize-control-bgtfw_layout_page.customize-control-kirki-radio > label input[type="radio"][value=left-sidebar]:checked:after {
 				transform: rotate(180deg);
 				transform-origin: 50% 50%;
 				margin-left: -6px;
 				margin-top: -2px;
 			}
-			
 			#customize-control-bgtfw_layout_page.customize-control-kirki-radio > label input[type="radio"][value=no-sidebar] {
 				background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cpath fill='%239b9b9b' d='M2.12 29.96h27.84V2.12H2.12v27.84zM.04 1.26C.04.6.58.04 1.26.04H30.8c.7 0 1.24.54 1.24 1.22V30.8c0 .7-.55 1.24-1.23 1.24H1.28C.6 32.04.04 31.5.04 30.8V1.27z'/%3E%3C/svg%3E");
 			}
-			
 			#customize-control-bgtfw_layout_page.customize-control-kirki-radio > label input[type="radio"][value=no-sidebar]:hover, #customize-control-bgtfw_layout_page.customize-control-kirki-radio > label input[type="radio"][value=no-sidebar]:focus, #customize-control-bgtfw_layout_page.customize-control-kirki-radio > label input[type="radio"][value=no-sidebar]:checked {
 				background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Cpath fill='%23444' d='M2.12 29.96h27.84V2.12H2.12v27.84zM.04 1.26C.04.6.58.04 1.26.04H30.8c.7 0 1.24.54 1.24 1.22V30.8c0 .7-.55 1.24-1.23 1.24H1.28C.6 32.04.04 31.5.04 30.8V1.27z'/%3E%3C/svg%3E");
 			}
-			
 			#bgtfw-attributes-meta-box .advanced-toggle:before {
 				margin: 6px 6px 0 -6px;
 				font-size: 20px;
@@ -345,15 +345,17 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 				margin-left: 42px;
 				margin-top: -18px;
 			}
-		</style><?php
+		</style>
+		<?php
 	}
-	
+
 	/**
 	 * Scripts for page attributes meta box.
 	 *
-	 * @since 3.0.0
+	 * @since 2.0.0
 	 */
-	public function scripts() { ?>
+	public function scripts() {
+		?>
 		<script type="text/javascript">
 			jQuery( document ).ready( function( $ ) {
 				$( '.theme-layout-input' ).click( function() {
@@ -378,6 +380,7 @@ class Boldgrid_Framework_Layouts_Post_Meta {
 					
 				});
 			});
-		</script><?php
+		</script>
+		<?php
 	}
 }

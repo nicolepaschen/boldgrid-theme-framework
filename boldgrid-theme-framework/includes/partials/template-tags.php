@@ -419,5 +419,5 @@ function is_not_bgtfw_sidebar_layout() {
 		$layout = get_theme_mod( 'bgtfw_layout_' . $type, '' );
 	}
 
-	return ( $layout === 'no-sidebar' ) || empty( $layout ) ? true : false;
+	return ( 'no-sidebar' === $layout ) || empty( $layout ) ? true : false;
 }

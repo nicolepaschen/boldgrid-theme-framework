@@ -198,7 +198,7 @@ class BoldGrid_Framework {
 		 * @since 1.0.0
 		 */
 		require_once trailingslashit( __DIR__ ) . 'partials/wp_bootstrap_navwalker.php';
-		
+
 		/**
 		 * Include the TGM_Plugin_Activation class.
 		 */
@@ -516,6 +516,12 @@ class BoldGrid_Framework {
 		$theme_setup->add_additional_setup();
 	}
 
+	/**
+	 * This defines the core functionality of the framework's Layout section in the editor screens.
+	 *
+	 * @since    3.0.0
+	 * @access   private
+	 */
 	private function layouts() {
 		$layouts = new Boldgrid_Framework_Layouts_Post_Meta( $this->configs );
 
@@ -550,9 +556,9 @@ class BoldGrid_Framework {
 	}
 
 	/**
-	 * This defines the core functionality of the framework's Layout section.
+	 * This defines the core functionality of the framework's Layout section in the customizer.
 	 *
-	 * @since    1.3.5
+	 * @since    3.0.0
 	 * @access   private
 	 */
 	private function layout() {

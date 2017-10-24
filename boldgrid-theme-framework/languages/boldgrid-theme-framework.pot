@@ -438,11 +438,11 @@ msgstr ""
 msgid "Help"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-layout-page.php:92
+#: src/includes/customizer/class-boldgrid-framework-customizer-layout-page.php:91
 msgid "Default Global Layout"
 msgstr ""
 
-#: src/includes/customizer/class-boldgrid-framework-customizer-layout-page.php:105
+#: src/includes/customizer/class-boldgrid-framework-customizer-layout-page.php:104
 msgid "Default Page Layout"
 msgstr ""
 

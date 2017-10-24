@@ -83,7 +83,6 @@ class Boldgrid_Framework_Customizer_Layout_Page {
 		);
 
 		// Adds the "Page Layout" control the "Layout" section.
-		
 		$post_templates = array_flip( get_page_templates( null, 'post' ) );
 		Kirki::add_field(
 			'bgtfw_layout_page', array(

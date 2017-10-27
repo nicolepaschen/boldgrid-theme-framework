@@ -464,7 +464,9 @@ class BoldGrid_Framework {
 
 		// Add Kirki Fonts to WordPress Page/Post Editor.
 		if ( true === $this->configs['customizer-options']['typography']['enabled'] ) {
-			$this->loader->add_action( 'wp_loaded', $editor, 'add_google_fonts' );
+			$this->loader->add_filter( 'kirki/dynamic_css/method', $editor, 'add_styles_method' );
+			$this->loader->add_filter( 'kirki/bgtfw/googlefonts_load_method', $editor, 'kirki_load_method' );
+			$this->loader->add_filter( 'mce_css', $editor, 'add_google_fonts' );
 		}
 
 		$this->loader->add_action( 'init', $editor, 'add_post_title_toggle' );
